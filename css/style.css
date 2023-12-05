@@ -1,0 +1,160 @@
+*{
+	padding: 0%;
+	margin: 0%;
+	box-sizing: border-box;
+}
+
+body{
+	display: flex;
+	flex-direction: column;
+	font-family: 'audiowide';
+	background-color: var(--background-color);
+	color: var(--outline-color);
+	margin: 0;
+	padding: 0;	
+	text-shadow: 2px 2px 5px var(--outline-color);
+	box-shadow: 10px 10px 20px var(--outline-color);
+	
+}
+
+.title_wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	align-items: center;
+	text-align: center; /* Add this line */
+	text-shadow:1px 1px 10px var(--outline-color), 1px 1px 10px white;
+	border: 2px solid var(--outline-color);
+	font-size: xx-large;
+	box-shadow: 1px 1px 20px var(--outline-color);
+}
+.title{
+	align-items: center;
+	width: 100%;
+	border-bottom: 1px solid var(--outline-color);
+	box-shadow: 1px 1px 20px var(--outline-color), 1px 1px -20px var(--outline-color);
+}
+
+
+.title_sub{
+	font-size: medium;
+}
+
+.visible{
+	display: flex;
+}
+.menu_wrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.menu {
+	display: none;
+	position: relative;
+	justify-content: space-evenly;
+	/*top: 60px;*/
+	/*left: 0;*/
+	right: 2rem;
+	background: var(--background-color);
+	width: 80%;
+	/*padding: 10px;*/
+	/*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+	z-index: 1;
+	
+ }
+ 
+ .menu ul {
+	list-style: none;
+	padding: 0;
+	
+ }
+ 
+ .menu ul li {
+	margin-bottom: 10px;
+	
+ }
+ 
+ .menu ul li a {
+	/*color: #db0909;*/
+	text-decoration: none;
+ }
+ 
+ /* Hamburger menu icon styles */
+ #menu-icon {
+	display: flex;
+	font-size: 50px;
+	cursor: pointer;
+ }
+ .hamburger{
+	appearance: none;
+	display:none;
+	
+ }
+ /* Show menu when checkbox is checked */
+ #menu-toggle:checked + label + .menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: inherit;
+	height: auto;
+	width: 90%;
+	margin:0;
+	padding:0;
+
+ }
+
+.menu_button,
+.hate-button{
+	border:none;
+	color: none;
+	font-family: inherit;
+	background: none;
+	cursor: pointer;
+	color: var(--outline-color);
+	outline:none;
+}
+
+.menu_button:hover,
+.hate-button:hover{
+	color: var(--highlight-color);
+	text-shadow: 1px 1px 20px var(--highlight-color);
+}
+
+
+.content_wrapper{
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: wrap;
+	padding-top: 2rem;
+	flex-direction: row;
+	height: 100%;
+	width: 100%;
+	border: 1px solid var(--highlight-color);
+}
+
+.video_card{
+	display: none;
+	border: 1px solid var(--highlight-color);
+	color: var(--outline-color);
+	height: 25%;
+	width: auto;
+	
+	box-shadow: 1px 1px 20px var(--outline-color);
+	margin: 2rem;
+}
+
+.contact{
+	display: none;
+}
+
+
+
+
+
+	
+ 
+ 
