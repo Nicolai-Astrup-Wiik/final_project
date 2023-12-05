@@ -5,7 +5,7 @@
 }
 
 body{
-	display: flex;
+
 	flex-direction: column;
 	font-family: 'audiowide';
 	background-color: var(--background-color);
@@ -13,98 +13,102 @@ body{
 	margin: 0;
 	padding: 0;	
 	text-shadow: 2px 2px 5px var(--outline-color);
-	box-shadow: 10px 10px 20px var(--outline-color);
 	
+	/*background-image: url(/assets/3d-render-spotlights-grunge-brick-wall.jpeg);
+	background-size: contain;
+	background-repeat: no-repeat, repeat;
+	background-color: #cccccc;*/
 }
+
+/* title styling */
 
 .title_wrapper {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	align-items: center;
-	text-align: center; /* Add this line */
-	text-shadow:1px 1px 10px var(--outline-color), 1px 1px 10px white;
-	border: 2px solid var(--outline-color);
-	font-size: xx-large;
-	box-shadow: 1px 1px 20px var(--outline-color);
-}
-.title{
-	align-items: center;
 	width: 100%;
-	border-bottom: 1px solid var(--outline-color);
-	box-shadow: 1px 1px 20px var(--outline-color), 1px 1px -20px var(--outline-color);
+	height: auto;
 }
 
-
-.title_sub{
-	font-size: medium;
+.hamburger_wrapper{
+	display: none;
 }
 
-.visible{
+.hate-button_wrapper{
+	width: 10%;
 	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	height:max-content;
+	border: 1px solid var(--highlight-color);
+	box-shadow: 2px 2px 5px var(--highlight-color); ;
 }
-.menu_wrapper{
+
+.title_top-box {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: center;
+	width: 100%;
+	text-shadow:0px 0px 10px var(--outline-color), 1px 1px 10px white;
+	border: 2px solid var(--outline-color);
+	font-size: xx-large;
+	box-shadow: 0px 0px 20px var(--outline-color);
+
+}
+.centered-title {
+	display: flex;
+	justify-content: center;
 }
 
-.menu {
-	display: none;
-	position: relative;
-	justify-content: space-evenly;
-	/*top: 60px;*/
-	/*left: 0;*/
-	right: 2rem;
-	background: var(--background-color);
-	width: 80%;
-	/*padding: 10px;*/
-	/*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
-	z-index: 1;
-	
- }
- 
- .menu ul {
-	list-style: none;
-	padding: 0;
-	
- }
- 
- .menu ul li {
-	margin-bottom: 10px;
-	
- }
- 
- .menu ul li a {
-	/*color: #db0909;*/
-	text-decoration: none;
- }
- 
- /* Hamburger menu icon styles */
- #menu-icon {
+.title{
+	box-shadow: 0px 0px 20px var(--outline-color), 0px 0px -20px var(--outline-color);
+}
+
+.title_bottom-box{
+	width: 100%;
 	display: flex;
-	font-size: 50px;
-	cursor: pointer;
+	margin-top:1%;
+	justify-content: space-between;
+	align-items: center;
+	font-size: medium;
+}
+
+/* menu styling */
+ .menu_wrapper {
+	display: flex;
+	width: 100vw;
+	height:10vh;
+	justify-content: flex-start;
+  	position: relative; /* Adjust position type as necessary */
  }
+ 
+ .menu {
+	position: relative;
+	height: fit-content;
+	width: 100%;
+ }
+
  .hamburger{
 	appearance: none;
-	display:none;
-	
+	cursor: pointer;
+	font-size: smaller;
  }
- /* Show menu when checkbox is checked */
- #menu-toggle:checked + label + .menu {
+
+ .hate-button_wrapper{
 	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	width: inherit;
-	height: auto;
-	width: 90%;
-	margin:0;
-	padding:0;
+	flex-direction: column;
+	justify-content: center;
+	height: fit-content;
+	width: 15%;
 
  }
+
+.hate-button{
+	align-self: center;
+	cursor: pointer;
+}
 
 .menu_button,
 .hate-button{
@@ -113,6 +117,7 @@ body{
 	font-family: inherit;
 	background: none;
 	cursor: pointer;
+	text-shadow: inherit;
 	color: var(--outline-color);
 	outline:none;
 }
@@ -120,11 +125,75 @@ body{
 .menu_button:hover,
 .hate-button:hover{
 	color: var(--highlight-color);
-	text-shadow: 1px 1px 20px var(--highlight-color);
+	text-shadow: 1px 1px 1px 20px var(--highlight-color);
 }
 
+.visible{
+	display: flex;
+}
 
-.content_wrapper{
+@media screen and (max-width: 720px) {
+	.title_wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hamburger_wrapper {
+		width: 10%;
+		display: flex;
+		margin-left: 0.5rem;
+	}
+
+	.title_top-box {
+		font-size: large;
+	}
+	.title_bottom-box{
+		display:flex;
+		justify-content: space-between;
+	}
+	.title_bottom {
+		display: flex;
+		margin-left: 10%;
+	}
+
+	.hate-button_wrapper {
+		width: 20%;
+		font-size: small;
+		height: max-content;
+		display: flex;
+		flex-direction: column;
+		
+	}
+
+	.centered-title {
+		display: flex;
+		width: 80%;
+		justify-content: flex-start;
+		align-items: center;
+	} /* Added a closing curly brace here */
+
+	.menu {
+		display: none;
+		margin-left: 10%;
+		
+	}
+	
+	.hate-button {
+		font-size: x-small;
+	
+	 }
+
+	 .menu_button{
+		font-size: x-small;
+	 }
+
+	
+}
+
+.visible {
+	display: block;
+}
+/*.content_wrapper{
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
@@ -150,6 +219,12 @@ body{
 .contact{
 	display: none;
 }
+*/
+
+
+
+
+/* visible on/off */
 
 
 
