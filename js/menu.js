@@ -1,23 +1,18 @@
-// give all buttons a constant in js with querySelector
-const filterButtons = document.querySelectorAll('.menu-button');
-// give all of the listed items a constant as well
-const listItems = document.querySelectorAll('.list-item');
-// fetch the parent div of all the listed items and give it a constant
-const listItemContainer = document.querySelector('.portfolio_content');
 
-// filter through buttons and listen for click - last line
+const filterButtons = document.querySelectorAll('.menu_button'); 
+const listItems = document.querySelectorAll('.list-item');
+const listItemContainer = document.querySelector('.list-items-container');
+
+// filter through buttons and listen for click 
 filterButtons.forEach(filterButton => {
   // define function to filter new list shallow copy
   const filterList = (event) => {
-    // create constant current button and assign the current target which is more reliable
     const currentButton = event.currentTarget;
-
-    // assign the dataset id for the clicked button to a constant
     const currentButtonFilterBy = currentButton.dataset.filterBy;
 
     // Loop through each list item and manipulate its class
     listItems.forEach(item => {
-      item.classList.remove('visible'); // Hide all items initially
+      item.classList.remove('visible'); 
     });
 
     // Remove 'highlight' class from all buttons
@@ -40,6 +35,7 @@ filterButtons.forEach(filterButton => {
 
       filteredItems.forEach(item => {
         item.classList.add('visible'); // Show filtered items
+        console.log("show items")
       });
 
       currentButton.classList.add('highlight');
