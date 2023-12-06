@@ -1,5 +1,5 @@
 // Selecting the hateButton
-const hateButton = document.querySelector(".hate-button");
+const hateButton = document.querySelector(".title-wrapper__hate-button");
 
 // Adding an event listener to the hateButton
 hateButton.addEventListener('click', function() {
@@ -16,6 +16,7 @@ hateButton.addEventListener('click', function() {
   } else {
     root.style.setProperty('--outline-color', 'white');
     root.style.setProperty('--highlight-color', 'white');
+    root.style.setProperty('--emphasis-color', 'white');
 	 hateButton.textContent = 'nevermind!'
   }
 });
