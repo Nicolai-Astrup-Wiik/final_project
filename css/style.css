@@ -1,23 +1,15 @@
-*{
-	padding: 0%;
-	margin: 0%;
-	box-sizing: border-box;
-}
+
 
 body{
-
-	/*flex-direction: column;*/
-	font-family: 'audiowide';
+	font-family: var(--custom-font);
 	background-color: var(--background-color);
 	color: var(--outline-color);
 	margin: 0;
 	padding: 0;	
 	text-shadow: 2px 2px 5px var(--outline-color);
-	
 	/*background-image: url(/assets/3d-render-spotlights-grunge-brick-wall.jpeg);
 	background-size: contain;
-	background-repeat: no-repeat, repeat;
-	background-color: #cccccc;*/
+	/*background-repeat: no-repeat, repeat;*/
 }
 
 /* title styling */

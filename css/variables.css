@@ -1,9 +1,8 @@
-:root{
+:root {
 	--background-color: black;
 	--outline-color: rgb(255, 0, 247);
 	--highlight-color: rgb(0, 191, 255);
 	--emphasis-color: yellow;
-
-}
-
-
+	--custom-font: 'Audiowide', sans-serif;
+ }
+ 
