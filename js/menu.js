@@ -45,3 +45,7 @@ filterButtons.forEach(filterButton => {
   // this is the event listener that looks for a click on each button
   filterButton.addEventListener('click', filterList);
 });
+
+
+
+

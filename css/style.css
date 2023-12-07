@@ -114,6 +114,7 @@ body{
  }
 
 .menu_button,
+.sort_button,
 .title-wrapper__hate-button{
 	border:none;
 	color: none;
@@ -128,6 +129,7 @@ body{
 }
 
 .menu_button:hover,
+.sort_button,
 .title-wrapper__hate-button:hover{
 	color: var(--highlight-color);
 	text-shadow: 1px 1px 1px 20px var(--highlight-color);
@@ -274,7 +276,8 @@ footer {
 	
 	 }
 
-	 .menu_button{
+	 .menu_button,
+	 .sort_button{
 		font-size: x-small;
 	 }
 
