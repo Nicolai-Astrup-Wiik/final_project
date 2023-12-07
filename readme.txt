@@ -13,3 +13,12 @@ agency work (ie. concepts developed by ad agencies and directed by me)
 
 
 
+resources:
+
+Menu icon: 
+https://www.flaticon.com/free-icon-font/rectangle-list_10742286?term=menu&related_id=10742286
+
+font: 
+https://fonts.google.com/specimen/Audiowide
+
+
