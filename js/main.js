@@ -12,29 +12,26 @@ hateButton.addEventListener('click', function() {
     root.style.setProperty('--outline-color', 'rgb(255, 0, 247)');
     root.style.setProperty('--highlight-color', 'rgb(0, 191, 255)');
     root.style.setProperty('--emphasis-color', 'yellow');
-	  hateButton.textContent = 'I HATE colors!'
-
+    hateButton.textContent = 'I HATE colors!';
   } else {
     root.style.setProperty('--outline-color', 'white');
     root.style.setProperty('--highlight-color', 'white');
     root.style.setProperty('--emphasis-color', 'gray');
-	 hateButton.textContent = 'nevermind!'
+    hateButton.textContent = 'nevermind!';
   }
 });
 
-//listens for click on hamburger menu
-
+// Listens for click on hamburger menu
 const checkbox = document.getElementById('menu-toggle');
 const menu = document.querySelector('.menu');
 
 checkbox.addEventListener('change', function() {
-  console.log('the hamburger has been checked')
+  console.log('the hamburger has been checked');
   if (this.checked) {
-    console.log("here is the menu")
+    console.log("here is the menu");
     menu.classList.add('visible');
   } else {
     menu.classList.remove('visible');
-    console.log("menu gone")
+    console.log("menu gone");
   }
 });
-

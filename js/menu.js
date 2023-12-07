@@ -1,35 +1,35 @@
-
-const filterButtons = document.querySelectorAll('.menu_button'); 
+const filterButtons = document.querySelectorAll('.menu_button');
 const listItems = document.querySelectorAll('.list-item');
 const listItemContainer = document.querySelectorAll('.list-items-container');
 
-// filter through buttons and listen for click 
+// Filter through buttons and listen for click 
 filterButtons.forEach(filterButton => {
-  // define function to filter new list shallow copy
+  // Define function to filter new list shallow copy
   const filterList = (event) => {
     const currentButton = event.currentTarget;
     const currentButtonFilterBy = currentButton.dataset.filterBy;
 
     // Loop through each list item and manipulate its class
     listItems.forEach(item => {
-      item.classList.remove('visible'); 
+      item.classList.remove('visible');
     });
 
-    //remove earlier versions of sorted videos
+    // Remove earlier versions of sorted videos
     const sortedListItems = document.querySelectorAll('.list-item[data-type="sorted"]');
     sortedListItems.forEach(item => {
-    item.parentNode.removeChild(item);
+      item.parentNode.removeChild(item);
     });
 
     // Remove 'highlight' class from all menu buttons
     filterButtons.forEach(button => {
       button.classList.remove('highlight');
     });
-    //remove highlight from sort buttons
-	  const sortButtons = document.querySelectorAll('.sort_button');
-	  sortButtons.forEach(button => {
-    button.classList.remove('highlight');
-	  });
+
+    // Remove highlight from sort buttons
+    const sortButtons = document.querySelectorAll('.sort_button');
+    sortButtons.forEach(button => {
+      button.classList.remove('highlight');
+    });
 
     if (currentButtonFilterBy === 'clear') {
       return; // Do nothing for 'Clear' button
@@ -46,15 +46,13 @@ filterButtons.forEach(filterButton => {
 
       filteredItems.forEach(item => {
         item.classList.add('visible'); // Show filtered items
-        console.log("show items")
+        console.log("show items");
       });
 
       currentButton.classList.add('highlight');
     }
   };
 
-  // this is the event listener that looks for a click on each button
+  // This is the event listener that looks for a click on each button
   filterButton.addEventListener('click', filterList);
 });
-
-
