@@ -1,7 +1,7 @@
 
 const filterButtons = document.querySelectorAll('.menu_button'); 
 const listItems = document.querySelectorAll('.list-item');
-const listItemContainer = document.querySelector('.list-items-container');
+const listItemContainer = document.querySelectorAll('.list-items-container');
 
 // filter through buttons and listen for click 
 filterButtons.forEach(filterButton => {
@@ -15,10 +15,21 @@ filterButtons.forEach(filterButton => {
       item.classList.remove('visible'); 
     });
 
-    // Remove 'highlight' class from all buttons
+    //remove earlier versions of sorted videos
+    const sortedListItems = document.querySelectorAll('.list-item[data-type="sorted"]');
+    sortedListItems.forEach(item => {
+    item.parentNode.removeChild(item);
+    });
+
+    // Remove 'highlight' class from all menu buttons
     filterButtons.forEach(button => {
       button.classList.remove('highlight');
     });
+    //remove highlight from sort buttons
+	  const sortButtons = document.querySelectorAll('.sort_button');
+	  sortButtons.forEach(button => {
+    button.classList.remove('highlight');
+	  });
 
     if (currentButtonFilterBy === 'clear') {
       return; // Do nothing for 'Clear' button
@@ -45,7 +56,5 @@ filterButtons.forEach(filterButton => {
   // this is the event listener that looks for a click on each button
   filterButton.addEventListener('click', filterList);
 });
-
-
 
 

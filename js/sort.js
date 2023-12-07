@@ -1,56 +1,89 @@
-function sortAndDisplayVideos() {
+
+
+
+
+
+function sortAndDisplayVideos(isNewest) {
 	const videoCards = Array.from(document.querySelectorAll('.video-card'));
-	const listItemsContainer = document.querySelector('.list-items-container');
-	const selectedButton = document.querySelector('.sort_button.selected');
-	const dataFilterBy = selectedButton.getAttribute('data-filter-by');
+	const videoCardsCopy = videoCards.map(card => card.cloneNode(true));
 
-	const sortedVideos = videoCards.slice(); // Make a copy of the array
+	const sortedVideos = videoCardsCopy.sort((a, b) => {
+		 const yearA = parseInt(a.getAttribute('data-year'));
+		 const monthA = parseInt(a.getAttribute('data-month'));
+		 const iframeA = a.querySelector('iframe').src;
+		 const yearB = parseInt(b.getAttribute('data-year'));
+		 const monthB = parseInt(b.getAttribute('data-month'));
+		 const iframeB = b.querySelector('iframe').src;
 
-	sortedVideos.sort((a, b) => {
-		 const yearA = Number(a.getAttribute('data-year'));
-		 const monthA = Number(a.getAttribute('data-month'));
-		 const yearB = Number(b.getAttribute('data-year'));
-		 const monthB = Number(b.getAttribute('data-month'));
-
-		 if (dataFilterBy === 'oldest') {
-			  if (yearA !== yearB) {
-					return yearA - yearB;
-			  } else {
-					return monthA - monthB;
-			  }
-		 } else if (dataFilterBy === 'newest') {
-			  if (yearA !== yearB) {
-					return yearB - yearA;
-			  } else {
-					return monthB - monthA;
-			  }
+		 if (yearA !== yearB) {
+			  return isNewest ? yearB - yearA : yearA - yearB;
+		 } else if (monthA !== monthB) {
+			  return isNewest ? monthB - monthA : monthA - monthB;
+		 } else {
+			  return isNewest ? iframeB.localeCompare(iframeA) : iframeA.localeCompare(iframeB);
 		 }
 	});
 
-	listItemsContainer.innerHTML = ''; // Clear the container
 
+	//make constant for uniq e videos 
+	const uniqueVideos = [];
 	sortedVideos.forEach(video => {
-		 const container = document.createElement('div');
-		 container.classList.add('list-item', 'visible');
-		 container.appendChild(video.cloneNode(true));
-		 listItemsContainer.appendChild(container);
+		 const iframeSrc = video.querySelector('iframe').src;
+		 //compare the iframes to remove duplicates 
+		 if (!uniqueVideos.some(uniqueVideo => uniqueVideo.querySelector('iframe').src === iframeSrc)) {
+			//push unique videos to hte array uniquevideos
+			  uniqueVideos.push(video);
+		 }
 	});
+
+	const listItemsContainer = document.querySelector('.list-items-container');
+
+	// Remove existing list-items by hiding them
+	document.querySelectorAll('.list-item').forEach(item => {
+		 item.classList.remove('visible');
+	});
+
+	 //remove earlier versions of sorted videos
+    const sortedListItems = document.querySelectorAll('.list-item[data-type="sorted"]');
+    sortedListItems.forEach(item => {
+    item.parentNode.removeChild(item);
+    });
+
+	// Create a new list-item container
+	const newListItemContainer = document.createElement('div');
+	newListItemContainer.classList.add('list-item', 'visible');
+	newListItemContainer.setAttribute('data-type', 'sorted');
+
+	//remove highlight from other buttons
+	const menuButtons = document.querySelectorAll('.menu_button');
+	menuButtons.forEach(button => {
+   button.classList.remove('highlight');
+	});
+
+	uniqueVideos.forEach(video => {
+		// video.classList.add('visible');
+		 newListItemContainer.appendChild(video);
+	});
+
+	// Append the new container with sorted video cards to the main list-items-container
+	listItemsContainer.appendChild(newListItemContainer);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-	const sortButtons = document.querySelectorAll('.sort_button');
+	const newestButton = document.querySelector('.sort_button[data-filter-by="newest"]');
+	const oldestButton = document.querySelector('.sort_button[data-filter-by="oldest"]');
+	const otherButtons = document.querySelectorAll('.menu_button');
 
-	sortButtons.forEach(button => {
-		 button.addEventListener('click', function () {
-			  // Remove 'selected' class from all buttons
-			  sortButtons.forEach(btn => btn.classList.remove('selected'));
-
-			  // Add 'selected' class to the clicked button
-			  button.classList.add('selected');
-
-			  sortAndDisplayVideos();
-		 });
+	newestButton.addEventListener('click', function () {
+		
+		newestButton.classList.add('highlight');
+		oldestButton.classList.remove('highlight');
+		 sortAndDisplayVideos(true);
 	});
 
-	sortAndDisplayVideos(); // Initially sort and display videos
+	oldestButton.addEventListener('click', function () {
+		oldestButton.classList.add('highlight');
+		newestButton.classList.remove('highlight');
+		 sortAndDisplayVideos(false);
+	});
 });

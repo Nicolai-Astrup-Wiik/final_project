@@ -11,12 +11,13 @@ hateButton.addEventListener('click', function() {
   if (outlineColor === 'white') {
     root.style.setProperty('--outline-color', 'rgb(255, 0, 247)');
     root.style.setProperty('--highlight-color', 'rgb(0, 191, 255)');
-	 hateButton.textContent = 'I HATE colors!'
+    root.style.setProperty('--emphasis-color', 'yellow');
+	  hateButton.textContent = 'I HATE colors!'
 
   } else {
     root.style.setProperty('--outline-color', 'white');
     root.style.setProperty('--highlight-color', 'white');
-    root.style.setProperty('--emphasis-color', 'white');
+    root.style.setProperty('--emphasis-color', 'gray');
 	 hateButton.textContent = 'nevermind!'
   }
 });

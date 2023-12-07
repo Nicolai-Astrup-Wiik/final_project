@@ -128,11 +128,12 @@ body{
 	outline:none;
 }
 
+.hamburger:hover,
 .menu_button:hover,
-.sort_button,
+.sort_button:hover,
 .title-wrapper__hate-button:hover{
-	color: var(--highlight-color);
-	text-shadow: 1px 1px 1px 20px var(--highlight-color);
+	color: var(--hover-color);
+	text-shadow: 1px 1px 1px 20px var(--hover-color);
 }
 
 .list-items-container {
@@ -299,6 +300,7 @@ footer {
 		width: 100%;
 		position: fixed;
 		text-align: left;
+		padding-left: 0.5rem;
 
 		backdrop-filter: blur(10px); 
 	}
