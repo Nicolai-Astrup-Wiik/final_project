@@ -6,8 +6,7 @@ hateButton.addEventListener('click', function() {
   const root = document.documentElement;
   const outlineColor = getComputedStyle(root).getPropertyValue('--outline-color').trim();
 
-  console.log("Hate button clicked!");
-
+  //change color variables and update button text
   if (outlineColor === 'white') {
     root.style.setProperty('--outline-color', 'rgb(255, 0, 247)');
     root.style.setProperty('--highlight-color', 'rgb(0, 191, 255)');
@@ -27,6 +26,8 @@ const menu = document.querySelector('.menu');
 
 checkbox.addEventListener('change', function() {
   console.log('the hamburger has been checked');
+
+  //toggle css 'visible' for menu
   if (this.checked) {
     console.log("here is the menu");
     menu.classList.add('visible');
