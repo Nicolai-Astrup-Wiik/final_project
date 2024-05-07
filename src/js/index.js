@@ -4,3 +4,4 @@ import sortAndDisplayVideos from "./sort.js";
 import "../styles/reset.css";
 import "../styles/style.css";
 import "../styles/variables.css";
+import { firebaseLogin, addFilm, getFilms } from "./firebase.js";

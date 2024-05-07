@@ -10,6 +10,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { listItemContainer } from "./menu";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,9 +32,14 @@ const db = getFirestore(app);
 const filmRef = collection(db, "films");
 
 export const getFilms = async () => {
+  const container = document.querySelector(".list-items-container");
   const snapshot = await getDocs(filmRef);
-  return snapshot.docs.map((film) => {
-    return film.data();
+  snapshot.docs.forEach((film) => {
+    const data = film.data();
+    const iframe = document.createElement("iframe");
+    iframe.src = data.url;
+    iframe.classList.add("video-card");
+    container.appendChild(iframe);
   });
 };
 
@@ -56,3 +62,5 @@ export async function firebaseLogin(email, password) {
     return { type: "error", message: errorMessage };
   }
 }
+
+getFilms();
