@@ -1,5 +1,12 @@
+import { doc } from "firebase/firestore";
+
 // Selecting the hateButton
 const hateButton = document.querySelector(".title-wrapper__hate-button");
+
+//selecting elements
+const addFilmButton = document.querySelector(".add-film-button");
+const addFilmDialog = document.querySelector(".add-film-page");
+const closeDialogButton = document.querySelector(".close-dialog-button");
 
 // Adding an event listener to the hateButton
 hateButton.addEventListener("click", function () {
@@ -37,6 +44,16 @@ checkbox.addEventListener("change", function () {
     menu.classList.remove("visible");
     console.log("menu gone");
   }
+});
+
+addFilmButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  addFilmDialog.showModal();
+});
+
+closeDialogButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  addFilmDialog.close();
 });
 
 export { checkbox, menu, hateButton };
