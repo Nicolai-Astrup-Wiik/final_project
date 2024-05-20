@@ -44,10 +44,47 @@
 		</div>
 	</div>
 	
-	<!-- commercials  -->
-	<div class="list-items-container">
+
+	<div class="login-page visible" >
+		<form class="login-form">
+			<label for="email">Email<sup>*</sup></label>
+			<input type="email" name="email" class="email" />
+			<label for="password">Password<sup>*</sup></label>
+			<input type="password" name="password" class="password" />
+			<button class="login-button" type="button">LOG IN</button>
+		</form>
+
+	</div>
+	<dialog  class="add-film-page">
+		<button class="close-dialog-button">X</button>
+		<form class="add-film-form">
+		<div class="form-elements-container">
+			<label for="title">Title</label>
+			<input type="text" name="title" id="title">
+			<label for="date">Date of production</label>
+			<input type="date" name="date" id="date">
+			<label for="agency"><input type="checkbox" name="agency" id="agency" value="value">Agency?</label>
+			<label for="url">Url</label>
+			<input type="text" name="url" id="url">
+			<button class="film-submit-button" type="button">submit</button>
+			</div>
+		</form>
+
+
+	</dialog>
+
+	
+	<div class="list-items-container ">
+		<button class="add-film-button">
+			<svg class=" w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill= var(--outline-color) viewBox="0 0 24 24">
+				<path fill-rule="evenodd" d="M4.857 3A1.857 1.857 0 0 0 3 4.857v4.286C3 10.169 3.831 11 4.857 11h4.286A1.857 1.857 0 0 0 11 9.143V4.857A1.857 1.857 0 0 0 9.143 3H4.857Zm10 0A1.857 1.857 0 0 0 13 4.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 21 9.143V4.857A1.857 1.857 0 0 0 19.143 3h-4.286Zm-10 10A1.857 1.857 0 0 0 3 14.857v4.286C3 20.169 3.831 21 4.857 21h4.286A1.857 1.857 0 0 0 11 19.143v-4.286A1.857 1.857 0 0 0 9.143 13H4.857ZM18 14a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2v-2Z" clip-rule="evenodd"/>
+			 </svg>
+			</button>
 		
 	</div>
+
+	<button class="logout-button" type="button">LOG OUT</button>
+ 
 	<footer>
 		nameyname@namemail.com, +4769696969, Frontendveien 30A, 0554 Oslo  Norway 				
 	</footer>

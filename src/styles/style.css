@@ -136,7 +136,7 @@ body {
 }
 
 .list-items-container {
-    display: flex;
+    display: none;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100vw;
@@ -202,9 +202,61 @@ body {
     text-shadow: 1px 1px 1px 20px var(--emphasis-color);
 }
 
+.login-page{
+    display: none;
+}
+
+.logout-button{
+    margin-bottom: 5rem;
+}
+
+.form-elements-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    
+
+}
+.form-elements-container label {
+    padding: 2rem;
+ 
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(10px);
+    opacity: 0.75;
+    
+  }
+
+  .add-film-page {
+
+    font-family: var(--custom-font);
+    background-color: var(--background-color);
+    color: var(--outline-color);
+    border-color: var(--emphasis-color);
+    margin: 0;
+    padding: 2rem;
+    text-shadow: 2px 2px 5px var(--outline-color);
+
+   color: var(--outline-color);
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+      }
+  
+
+.invisible{
+    display: none;
+}
 .visible {
     display: flex;
 }
+
 
 footer {
     font-size: smaller;
