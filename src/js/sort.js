@@ -67,7 +67,7 @@ allButton.addEventListener("click", async (e) => {
 
 bioButton.addEventListener("click", (e) => {
   bioPage.style.display = "block";
-  contentPage.style.display = "none";
+  contentPage.style.display = "hidden";
 
   menuButtons.forEach((button) => {
     button.classList.remove("highlight");

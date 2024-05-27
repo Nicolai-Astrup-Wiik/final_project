@@ -24,7 +24,6 @@ export const renderQuote = async () => {
   quoteContainer.appendChild(quoteP);
   bioPage.insertBefore(quoteContainer, bioText);
   quoteContainer.style.marginBottom = "2rem";
-  console.log(quote);
 };
 
 renderQuote();

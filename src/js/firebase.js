@@ -76,8 +76,6 @@ export const renderFilms = async () => {
     await getFilms();
   }
   removeVideos();
-  console.log("renderrender");
-  console.log(films);
 
   bioPage.style.display = "none";
   let sortedFilms = filterOrSortVideos(films);
@@ -106,7 +104,6 @@ export const renderFilms = async () => {
 
 //HANDLE LOGIN TO FIREBASE
 export async function firebaseLogin(email, password) {
-  console.log(email, password);
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,

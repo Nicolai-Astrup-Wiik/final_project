@@ -44,15 +44,11 @@ const checkbox = document.getElementById("menu-toggle");
 const menu = document.querySelector(".menu");
 
 checkbox.addEventListener("change", function () {
-  console.log("the hamburger has been checked");
-
   //toggle css 'visible' for menu
   if (this.checked) {
-    console.log("here is the menu");
     menu.classList.add("visible");
   } else {
     menu.classList.remove("visible");
-    console.log("menu gone");
   }
 });
 
