@@ -1,4 +1,4 @@
-import { renderFilms } from "./firebase";
+import { removeVideos, renderFilms } from "./firebase";
 
 let filterOrSortState = "all";
 
@@ -12,46 +12,70 @@ const oldestButton = document.getElementById("oldest");
 const agencyButton = document.getElementById("agency-work");
 const directButton = document.getElementById("direct-work");
 const allButton = document.getElementById("all");
+const bioButton = document.getElementById("bio");
+const bioPage = document.querySelector(".bio-page");
+const contentPage = document.querySelector(".list-items-container");
 
-newestButton.addEventListener("click", (e) => {
+const menuButtons = document.querySelectorAll(".menu_button");
+
+newestButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = newest;
-  renderFilms();
+  await await renderFilms();
+  menuButtons.forEach((button) => {
+    button.classList.remove("highlight");
+  });
   newestButton.classList.add("highlight");
-  oldestButton.classList.remove("highlight");
 });
-oldestButton.addEventListener("click", (e) => {
+oldestButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = oldest;
-  renderFilms();
-  newestButton.classList.add("highlight");
-  oldestButton.classList.remove("highlight");
+  await renderFilms();
+  menuButtons.forEach((button) => {
+    button.classList.remove("highlight");
+  });
+  oldestButton.classList.add("highlight");
 });
 
-agencyButton.addEventListener("click", (e) => {
+agencyButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = agency;
-  renderFilms();
-  newestButton.classList.add("highlight");
-  oldestButton.classList.remove("highlight");
+  await renderFilms();
+  menuButtons.forEach((button) => {
+    button.classList.remove("highlight");
+  });
+  agencyButton.classList.add("highlight");
 });
-directButton.addEventListener("click", (e) => {
+directButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = directWork;
-  renderFilms();
-  newestButton.classList.add("highlight");
-  oldestButton.classList.remove("highlight");
+  await renderFilms();
+  menuButtons.forEach((button) => {
+    button.classList.remove("highlight");
+  });
+  directButton.classList.add("highlight");
 });
-allButton.addEventListener("click", (e) => {
+allButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = all;
-  renderFilms();
-  newestButton.classList.add("highlight");
-  oldestButton.classList.remove("highlight");
+  await renderFilms();
+  menuButtons.forEach((button) => {
+    button.classList.remove("highlight");
+  });
+  allButton.classList.add("highlight");
+});
+
+bioButton.addEventListener("click", (e) => {
+  bioPage.style.display = "block";
+  contentPage.style.display = "none";
+
+  menuButtons.forEach((button) => {
+    button.classList.remove("highlight");
+  });
+  bioButton.classList.add("highlight");
 });
 
 export function filterOrSortVideos(films) {
-  console.log("callcall");
   if (filterOrSortState === oldest) {
     return films.sort((a, b) => {
       return new Date(b.date) - new Date(a.date);
@@ -74,7 +98,7 @@ export function filterOrSortVideos(films) {
 }
 
 // Remove highlight from other buttons
-const menuButtons = document.querySelectorAll(".menu_button");
+
 menuButtons.forEach((button) => {
   button.classList.remove("highlight");
 });

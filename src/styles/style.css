@@ -5,13 +5,16 @@ body {
     margin: 0;
     padding: 0;
     text-shadow: 2px 2px 5px var(--outline-color);
-    /* to add background image */
-    /*background-image: url(/assets/3d-render-spotlights-grunge-brick-wall.jpeg);
-    background-size: contain;
-    /*background-repeat: no-repeat, repeat;*/
+ 
 }
 
-/* title styling */
+/* TITLE AND HEADER */
+header{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
 
 .title_wrapper {
     display: flex;
@@ -20,12 +23,9 @@ body {
     align-items: center;
     width: 100%;
     height: fit-content;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--emphasis-color);
-    z-index: 2;
+   
 }
 
 .title_top-box {
@@ -39,9 +39,20 @@ body {
     box-shadow: 0px 0px 20px var(--outline-color);
 }
 
-.centered-title {
+.header-row {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+}
+.header-row-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
 }
 
 .hamburger_wrapper {
@@ -96,7 +107,7 @@ body {
     cursor: pointer;
 }
 
-/* menu styling */
+/* MENU STYLING */
 .menu_wrapper {
     display: flex;
     flex-direction: row;
@@ -135,80 +146,35 @@ body {
     text-shadow: 1px 1px 1px 20px var(--hover-color);
 }
 
+/* VIDEO CONTENT STYLING  */
 .list-items-container {
-    display: none;
+    display: flex; 
     flex-direction: row;
     flex-wrap: wrap;
     width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
-
-.list-item {
-    display: none;
-    flex-wrap: wrap;
+    /*height: 100vh;*/
     justify-content: space-evenly;
-    align-items: center;
+    align-items: stretch;
+
 }
 
 .video-card {
-    margin: 1rem; /* Adjust margin between video cards */
-    box-sizing: border-box;
+    position: relative;
+    width: 30%; 
+    padding-bottom: 16.875%; 
+    margin: 1rem; 
     border: 1px solid var(--emphasis-color);
+    overflow: hidden; 
+    margin-bottom: 1rem;
 }
 
 .video-card iframe {
+    position: absolute;
+    border: none;
     width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-}
-
-.list-item__centered-paragraph {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: top;
-    margin: 2rem;
-    height: 100vh;
-}
-
-.list-item__centered-contact {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: top;
-    margin: 2rem;
-    height: 100%;
-    width: 100%;
-}
-
-.bio {
-    margin-left: 0;
-    width: 100%;
-    text-align: left;
-}
-
-.contact {
-    position: absolute;
-    margin: 0;
-    width: 80%;
-    text-align: center;
-}
-
-.highlight {
-    color: var(--emphasis-color);
-    text-shadow: 1px 1px 1px 20px var(--emphasis-color);
-}
-
-.login-page{
-    display: none;
-    display: flex;
-  
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .icon {
@@ -217,6 +183,49 @@ body {
     background: transparent;
     filter: drop-shadow(0 0 10px rgba(0, 247, 251, 0.8)); /* Glow effect */
   }
+
+/* BIO STYLING */
+
+.bio {
+    margin-left: 0;
+    width: 100%;
+    text-align: left;
+}
+
+/* CONTACT FOOTER  */
+footer {
+    font-size: smaller;
+    border: 1px solid var(--outline-color);
+    box-shadow: 0px 0px 20px var(--outline-color);
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+.contact {
+    position: absolute;
+    margin: 0;
+    width: 80%;
+    text-align: center;
+}
+
+
+/* LOGIN PAGE STYLING */
+
+.close-login-button, .close-dialog-button{
+    background: none;
+	border: none;
+	padding: 0;
+    color: var(--outline-color);
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer
+}
+.close-login-button:hover, .close-dialog-button:hover{
+    color: var(--highlight-color);
+}
+
 .login-form{
     display: flex;
     width: fit-content;
@@ -227,7 +236,48 @@ body {
     align-items: center;
 }
 
-.login-button{
+input[type=text]{
+    background-color: transparent;
+    font-family: inherit;
+    color: var(--outline-color);
+    border: 1px solid var(--emphasis-color)
+}
+input[type=date]{
+    background-color: transparent;
+    font-family: inherit;
+    color: var(--outline-color);
+    border: 1px solid var(--emphasis-color)
+}
+input[type=email]{
+    background-color: transparent;
+    font-family: inherit;
+    color: var(--outline-color);
+    border: 1px solid var(--emphasis-color)
+}
+input[type=password]{
+    background-color: transparent;
+    font-family: inherit;
+    color: var(--outline-color);
+    border: 1px solid var(--emphasis-color)
+}
+.login-button, .logout-button, .film-submit-button{
+   
+    border: none;
+    color: none;
+    padding: 0.5rem;
+    font-family: inherit;
+    background: none;
+    cursor: pointer;
+    text-shadow: inherit;
+    color: var(--outline-color);
+    outline: none;
+    cursor: pointer;
+}
+.film-submit-button{font-size: large;}
+.login-button:hover, .logout-button:hover, .film-submit-button:hover{
+    color: var(--hover-color);
+}
+.login-submit-button{
     border: none;
     color: none;
     padding: 0.5rem;
@@ -248,53 +298,75 @@ body {
     text-shadow: inherit;
     color: var(--outline-color);
     outline: none;
-    margin-bottom: 2rem;
+    /*margin-bottom: 2rem;*/
+    justify-content: flex-end;
 
 }
+
+/* ADD FILMS PAGE STYLING */
 
 .form-elements-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    
-
 }
+
 .form-elements-container label {
-    padding: 2rem;
- 
+    padding: 1rem;
 }
 
 dialog::backdrop {
     backdrop-filter: blur(10px);
-    opacity: 0.75;
-    
-  }
+    opacity: 0.75;  
+}
 
-  .add-film-page {
+.add-film-container  {
 
-    font-family: var(--custom-font);
-    background-color: var(--background-color);
-    color: var(--outline-color);
-    border-color: var(--emphasis-color);
-    margin: 0;
-    padding: 2rem;
-    text-shadow: 2px 2px 5px var(--outline-color);
+    display: flex;
+    direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 15rem;
+    width: 100vw;
+    margin-bottom: 3rem;
+}
 
-   color: var(--outline-color);
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        -moz-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-        transform: translateX(-50%) translateY(-50%);
-      }
+
+.add-film-page, .login-page {
+font-family: var(--custom-font);
+background-color: var(--background-color);
+color: var(--outline-color);
+border-color: var(--emphasis-color);
+margin: 0;
+padding: 2rem;
+text-shadow: 2px 2px 5px var(--outline-color);
+
+color: var(--outline-color);
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    }
   
-
+/* ERROR MESSAGE STYLING */
 .error-message{
     font-size: small;
     color: orange;
+}
+
+/* BIO PAGE STYLING */
+.bio-page{
+    display: none;
+    padding: 2rem;
+}
+
+/* STATES STYLING */
+.highlight {
+    color: var(--emphasis-color);
+    text-shadow: 1px 1px 1px 20px var(--emphasis-color);
 }
 
 .invisible{
@@ -305,15 +377,18 @@ dialog::backdrop {
 }
 
 
-footer {
-    font-size: smaller;
-    border: 1px solid var(--outline-color);
-    box-shadow: 0px 0px 20px var(--outline-color);
-    bottom: 0;
-    width: 100%;
-    position: fixed;
-    text-align: center;
-    backdrop-filter: blur(10px);
+/* RESPONIVITY STYLING */
+@media screen and ( max-width: 960px){
+    .video-card {
+        position: relative;
+        width: 40%; 
+        padding-bottom: 22.5%; 
+        margin: 1rem; 
+        border: 1px solid var(--emphasis-color);
+        overflow: hidden; 
+        margin-bottom: 1rem;
+    }
+
 }
 
 @media screen and (max-width: 720px) {
@@ -374,6 +449,15 @@ footer {
     .highlight {
         color: var(--emphasis-color);
         text-shadow: 1px 1px 1px 20px var(--emphasis-color);
+    }
+    .video-card {
+        position: relative;
+        width: 80%; 
+        padding-bottom: 45%; 
+        margin-bottom: 1rem;
+        margin: 1rem; 
+        border: 1px solid var(--emphasis-color);
+        overflow: hidden; 
     }
 
     .visible {

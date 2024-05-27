@@ -6,7 +6,17 @@ const hateButton = document.querySelector(".title-wrapper__hate-button");
 //selecting elements
 const addFilmButton = document.querySelector(".add-film-button");
 const addFilmDialog = document.querySelector(".add-film-page");
-const closeDialogButton = document.querySelector(".close-dialog-button");
+const closeAddFilmButton = document.querySelector(".close-dialog-button");
+const logInButton = document.querySelector(".login-button");
+const loginPage = document.querySelector(".login-page");
+const contentPage = document.querySelector(".list-items-container");
+const bioPage = document.querySelector(".bio-page");
+const closeLogInButton = document.querySelector(".close-login-button");
+
+logInButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  loginPage.showModal();
+});
 
 // Adding an event listener to the hateButton
 hateButton.addEventListener("click", function () {
@@ -51,9 +61,13 @@ addFilmButton.addEventListener("click", (e) => {
   addFilmDialog.showModal();
 });
 
-closeDialogButton.addEventListener("click", (e) => {
+closeAddFilmButton.addEventListener("click", (e) => {
   e.preventDefault();
   addFilmDialog.close();
+});
+closeLogInButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  loginPage.close();
 });
 
 export { checkbox, menu, hateButton };
