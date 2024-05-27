@@ -16,7 +16,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import { listItemContainer } from "./menu";
+
 import { filterOrSortVideos } from "./sort";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -44,10 +44,11 @@ const loginPage = document.querySelector(".login-page");
 const loginForm = document.querySelector(".login-form");
 const emailInput = document.querySelector(".email");
 const passwordInput = document.querySelector(".password");
-const loginButton = document.querySelector(".login-button");
+const loginSubmitButton = document.querySelector(".login-submit-button");
 const logOutButton = document.querySelector(".logout-button");
 const container = document.querySelector(".list-items-container");
 const addFilmPage = document.querySelector(".add-film-page");
+const bioPage = document.querySelector(".bio-page");
 const addFilmForm = document.querySelector(".add-film-form");
 const filmFormContainer = document.querySelector(".form-elements-container");
 const filmTitle = document.getElementById("title");
@@ -55,8 +56,11 @@ const filmDate = document.getElementById("date");
 const filmAgency = document.getElementById("agency");
 const filmUrl = document.getElementById("url");
 const filmSubmitButton = document.querySelector(".film-submit-button");
+const logInButton = document.querySelector(".login-button");
+const addFilmButton = document.querySelector(".add-film-button");
 let films = [];
 
+//RETRIEVE FILMS FROM FIREBASE
 export const getFilms = async () => {
   films = [];
   const snapshot = await getDocs(filmRef);
@@ -66,14 +70,33 @@ export const getFilms = async () => {
   });
 };
 
-export const renderFilms = () => {
+//RENDER FILMS TO PAGE
+export const renderFilms = async () => {
+  if (films.length === 0) {
+    await getFilms();
+  }
   removeVideos();
+  console.log("renderrender");
+  console.log(films);
+
+  bioPage.style.display = "none";
   let sortedFilms = filterOrSortVideos(films);
+  container.style.display = "flex";
+  const button = document.querySelector(".add-film-button");
+
   sortedFilms.forEach((film) => {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("video-card");
+
     const iframe = document.createElement("iframe");
     iframe.src = film.url;
-    iframe.classList.add("video-card");
-    container.appendChild(iframe);
+    iframe.allow =
+      "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allowFullscreen = true;
+
+    wrapper.appendChild(iframe);
+
+    container.appendChild(wrapper);
   });
 };
 
@@ -81,6 +104,7 @@ export const renderFilms = () => {
 //  await addDoc(filmRef, input);
 //};
 
+//HANDLE LOGIN TO FIREBASE
 export async function firebaseLogin(email, password) {
   console.log(email, password);
   try {
@@ -89,25 +113,18 @@ export async function firebaseLogin(email, password) {
       email,
       password
     );
-    // Signed in
-
-    //getFilms();
   } catch (error) {
-    console.log("macmac", error);
-
     const errorMessage = error.message;
   }
 }
 
-//getFilms();
-
+//SIGN OUT
 const signOutUser = async () => {
   await signOut(auth);
-  container.style.display = "none";
-  loginPage.style.display = "flex";
 };
 
-loginButton.addEventListener("click", (e) => {
+//HANDLE AND VALIDATE LOGIN
+loginSubmitButton.addEventListener("click", (e) => {
   e.preventDefault();
 
   const userEmailInput = emailInput.value.trim();
@@ -119,7 +136,6 @@ loginButton.addEventListener("click", (e) => {
   emailErrorElement.textContent = "";
   passwordErrorElement.textContent = "";
 
-  // Flags to check if there are errors
   let hasError = false;
 
   // Basic validation
@@ -140,15 +156,13 @@ loginButton.addEventListener("click", (e) => {
     hasError = true;
   }
 
-  // If there are any errors, do not proceed
   if (hasError) {
     return;
   }
-
-  // Call firebase login function if validation passes
   firebaseLogin(userEmailInput, userPasswordInput);
 });
 
+//HANDLE LOGOUT CLICK
 logOutButton.addEventListener("click", (e) => {
   e.preventDefault();
   signOut(auth);
@@ -159,21 +173,14 @@ let unsubscribeFromAuthState;
 
 unsubscribeFromAuthState = onAuthStateChanged(auth, async (user) => {
   if (user) {
-    removeVideos();
-    container.style.display = "flex";
-    loginPage.style.display = "none";
+    loginPage.close();
+    logInButton.style.display = "none";
     logOutButton.style.display = "flex";
-
-    console.log("macmac");
-
-    await getFilms();
-    renderFilms();
+    addFilmButton.style.display = "flex";
   } else {
-    removeVideos();
-
-    container.style.display = "none";
-    loginPage.classList.add("visible");
     logOutButton.style.display = "none";
+    logInButton.style.display = "flex";
+    addFilmButton.style.display = "none";
   }
 });
 
@@ -183,6 +190,7 @@ function unsubscribeAuthStateListener() {
   }
 }
 
+//HANDLE AND VALIDATE NEW FILM SUBMIT
 filmSubmitButton.addEventListener("click", async (e) => {
   const titleErrorElement = document.getElementById("title-error-message");
   const dateErrorElement = document.getElementById("date-error-message");
@@ -223,7 +231,8 @@ filmSubmitButton.addEventListener("click", async (e) => {
   );
 });
 
-async function addFilm(title, date, agency, url) {
+//PUSH NEW FILM TO FIREBASE
+export async function addFilm(title, date, agency, url) {
   await addDoc(collection(db, "films"), {
     agency: agency,
     date: date,
@@ -232,9 +241,14 @@ async function addFilm(title, date, agency, url) {
   });
 }
 
-function removeVideos() {
+//REMOVE RENDERED FILMS
+export function removeVideos() {
   var iframes = document.getElementsByClassName("video-card");
   while (iframes[0]) {
     iframes[0].parentNode.removeChild(iframes[0]);
   }
 }
+
+document.addEventListener("DOMContentLoaded", async function () {
+  await renderFilms();
+});
