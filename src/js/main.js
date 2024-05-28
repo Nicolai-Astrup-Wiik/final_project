@@ -61,6 +61,7 @@ closeAddFilmButton.addEventListener("click", (e) => {
   e.preventDefault();
   addFilmDialog.close();
 });
+
 closeLogInButton.addEventListener("click", (e) => {
   e.preventDefault();
   loginPage.close();
