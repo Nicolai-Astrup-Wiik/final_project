@@ -15,7 +15,7 @@ import {
   addFilmButton,
 } from "./elements";
 
-//Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCnbgppAJujXk6RJMQ9DgCGYA3VmORN1BI",
   authDomain: "film-portfolio-fae54.firebaseapp.com",
