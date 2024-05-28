@@ -1,3 +1,4 @@
+import { documentId } from "firebase/firestore";
 import { removeVideos, renderFilms } from "./firebase";
 
 let filterOrSortState = "all";
@@ -15,13 +16,15 @@ const allButton = document.getElementById("all");
 const bioButton = document.getElementById("bio");
 const bioPage = document.querySelector(".bio-page");
 const contentPage = document.querySelector(".list-items-container");
+const addFilmContainer = document.querySelector(".add-film-container");
+const filmPage = document.querySelector(".film-page");
 
 const menuButtons = document.querySelectorAll(".menu_button");
 
 newestButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = newest;
-  await await renderFilms();
+  await renderFilms();
   menuButtons.forEach((button) => {
     button.classList.remove("highlight");
   });
@@ -67,7 +70,7 @@ allButton.addEventListener("click", async (e) => {
 
 bioButton.addEventListener("click", (e) => {
   bioPage.style.display = "block";
-  contentPage.style.display = "hidden";
+  filmPage.style.display = "none";
 
   menuButtons.forEach((button) => {
     button.classList.remove("highlight");
@@ -76,12 +79,12 @@ bioButton.addEventListener("click", (e) => {
 });
 
 export function filterOrSortVideos(films) {
-  if (filterOrSortState === oldest) {
+  if (filterOrSortState === newest) {
     return films.sort((a, b) => {
       return new Date(b.date) - new Date(a.date);
     });
   }
-  if (filterOrSortState === newest) {
+  if (filterOrSortState === oldest) {
     return films.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });

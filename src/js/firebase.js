@@ -15,6 +15,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  fetchSignInMethodsForEmail,
 } from "firebase/auth";
 
 import { filterOrSortVideos } from "./sort";
@@ -58,6 +59,7 @@ const filmUrl = document.getElementById("url");
 const filmSubmitButton = document.querySelector(".film-submit-button");
 const logInButton = document.querySelector(".login-button");
 const addFilmButton = document.querySelector(".add-film-button");
+const filmPage = document.querySelector(".film-page");
 let films = [];
 
 //RETRIEVE FILMS FROM FIREBASE
@@ -76,6 +78,7 @@ export const renderFilms = async () => {
     await getFilms();
   }
   removeVideos();
+  filmPage.style.display = "block";
 
   bioPage.style.display = "none";
   let sortedFilms = filterOrSortVideos(films);
@@ -103,17 +106,38 @@ export const renderFilms = async () => {
 //};
 
 //HANDLE LOGIN TO FIREBASE
-export async function firebaseLogin(email, password) {
+async function firebaseLogin(email, password) {
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
       password
     );
+    console.log("Login successful:", userCredential);
+    return true;
   } catch (error) {
-    const errorMessage = error.message;
+    console.error("Error during login:", error);
+    if (error.code === "auth/user-not-found") {
+      return false;
+    } else {
+      throw error;
+    }
   }
 }
+
+//async function checkIfUserExists(email) {
+//  try {
+//    const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+
+//    if (signInMethods.length > 0) {
+//      return true;
+//    } else {
+//      return false;
+//    }
+//  } catch (error) {
+//    throw error;
+//  }
+//}
 
 //SIGN OUT
 const signOutUser = async () => {
@@ -121,7 +145,7 @@ const signOutUser = async () => {
 };
 
 //HANDLE AND VALIDATE LOGIN
-loginSubmitButton.addEventListener("click", (e) => {
+loginSubmitButton.addEventListener("click", async (e) => {
   e.preventDefault();
 
   const userEmailInput = emailInput.value.trim();
@@ -130,8 +154,10 @@ loginSubmitButton.addEventListener("click", (e) => {
   // Clear previous error messages
   const emailErrorElement = document.getElementById("emailError");
   const passwordErrorElement = document.getElementById("passwordError");
+  const userErrorElement = document.getElementById("userError");
   emailErrorElement.textContent = "";
   passwordErrorElement.textContent = "";
+  userErrorElement.textContent = "";
 
   let hasError = false;
 
@@ -154,9 +180,37 @@ loginSubmitButton.addEventListener("click", (e) => {
   }
 
   if (hasError) {
+    resetErrorMessages([
+      emailErrorElement,
+      passwordErrorElement,
+      userErrorElement,
+    ]);
     return;
   }
-  firebaseLogin(userEmailInput, userPasswordInput);
+
+  try {
+    const userExists = await firebaseLogin(userEmailInput, userPasswordInput);
+    if (!userExists) {
+      userErrorElement.textContent = "User does not exist.";
+      resetErrorMessages([
+        emailErrorElement,
+        passwordErrorElement,
+        userErrorElement,
+      ]);
+    }
+  } catch (error) {
+    if (error.code === "auth/wrong-password") {
+      userErrorElement.textContent = "Invalid password. Please try again.";
+    } else {
+      userErrorElement.textContent =
+        "User does not exist or incorrect password";
+    }
+    resetErrorMessages([
+      emailErrorElement,
+      passwordErrorElement,
+      userErrorElement,
+    ]);
+  }
 });
 
 //HANDLE LOGOUT CLICK
@@ -226,6 +280,9 @@ filmSubmitButton.addEventListener("click", async (e) => {
     userAgencyInput,
     userUrlInput
   );
+  await getFilms();
+  await renderFilms();
+  addFilmPage.close();
 });
 
 //PUSH NEW FILM TO FIREBASE
@@ -244,6 +301,12 @@ export function removeVideos() {
   while (iframes[0]) {
     iframes[0].parentNode.removeChild(iframes[0]);
   }
+}
+
+function resetErrorMessages(errorElements) {
+  setTimeout(() => {
+    errorElements.forEach((element) => (element.textContent = ""));
+  }, 5000);
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
