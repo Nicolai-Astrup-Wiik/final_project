@@ -1,25 +1,23 @@
 import { documentId } from "firebase/firestore";
-import { removeVideos, renderFilms } from "./firebase";
+import {
+  bioPage,
+  filmPage,
+  newestButton,
+  oldestButton,
+  agencyButton,
+  directButton,
+  allButton,
+  bioButton,
+  menuButtons,
+} from "./elements";
+import { renderFilms } from "./renderFilms";
 
 let filterOrSortState = "all";
-
 const newest = "newest";
 const oldest = "oldest";
 const agency = "agency work";
 const directWork = "direct work";
 const all = "all";
-const newestButton = document.getElementById("newest");
-const oldestButton = document.getElementById("oldest");
-const agencyButton = document.getElementById("agency-work");
-const directButton = document.getElementById("direct-work");
-const allButton = document.getElementById("all");
-const bioButton = document.getElementById("bio");
-const bioPage = document.querySelector(".bio-page");
-const contentPage = document.querySelector(".list-items-container");
-const addFilmContainer = document.querySelector(".add-film-container");
-const filmPage = document.querySelector(".film-page");
-
-const menuButtons = document.querySelectorAll(".menu_button");
 
 newestButton.addEventListener("click", async (e) => {
   e.preventDefault();
