@@ -1,3 +1,5 @@
+
+//FETCH FINAL SPACE QUOTES AND SELECT RANDOM
 export const fetchQuote = async () => {
   let randomIndex = Math.floor(Math.random() * 50);
   if (randomIndex === 0) {
@@ -10,6 +12,7 @@ export const fetchQuote = async () => {
   return randomQuote;
 };
 
+//RENDER QUOTE AND BY
 export const renderQuote = async () => {
   const bioPage = document.querySelector(".bio-page");
   const bioText = document.querySelector(".bio-text");

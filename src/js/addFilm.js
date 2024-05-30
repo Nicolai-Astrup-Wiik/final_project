@@ -11,11 +11,12 @@ import {
 import { addFilm, getFilms } from "./firebase";
 import { renderFilms } from "./renderFilms";
 
+//ADD FILM OPEN MODAL
 addFilmButton.addEventListener("click", (e) => {
   e.preventDefault();
   addFilmDialog.showModal();
 });
-
+//ADD FILM CLOSE MODAL
 closeAddFilmButton.addEventListener("click", (e) => {
   e.preventDefault();
   addFilmDialog.close();
