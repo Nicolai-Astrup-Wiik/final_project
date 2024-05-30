@@ -22,6 +22,13 @@ closeAddFilmButton.addEventListener("click", (e) => {
   addFilmDialog.close();
 });
 
+function clearInputFields() {
+  document.getElementById("title").value = "";
+  document.getElementById("date").value = "";
+  document.getElementById("agency").checked = false;
+  document.getElementById("url").value = "";
+}
+
 // HANDLE AND VALIDATE NEW FILM SUBMIT
 filmSubmitButton.addEventListener("click", async (e) => {
   const titleErrorElement = document.getElementById("title-error-message");
@@ -65,3 +72,6 @@ filmSubmitButton.addEventListener("click", async (e) => {
   await renderFilms();
   addFilmDialog.close();
 });
+
+//CLEAR INPUTS UPON CLOSE
+addFilmDialog.addEventListener("close", clearInputFields);
