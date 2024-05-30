@@ -2,17 +2,18 @@ import { bioPage, container, filmPage } from "./elements";
 import { films, getFilms } from "./firebase";
 import { filterOrSortVideos } from "./sort";
 
-//RENDER FILMS TO PAGE
+//RENDER AND SORT FILMS TO PAGE
 export const renderFilms = async () => {
   if (films.length === 0) {
     await getFilms();
   }
   removeVideos();
   filmPage.style.display = "block";
-
   bioPage.style.display = "none";
+
   let sortedFilms = filterOrSortVideos(films);
   container.style.display = "flex";
+
   const button = document.querySelector(".add-film-button");
 
   sortedFilms.forEach((film) => {
@@ -39,6 +40,7 @@ export function removeVideos() {
   }
 }
 
+//WAIT FOR DOM TO LOAD AND RENDER FILMS
 document.addEventListener("DOMContentLoaded", async function () {
   await renderFilms();
 });

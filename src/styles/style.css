@@ -5,11 +5,10 @@ body {
     margin: 0;
     padding: 0;
     text-shadow: 2px 2px 5px var(--outline-color);
- 
 }
 
 /* TITLE AND HEADER */
-header{
+header {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
@@ -25,7 +24,6 @@ header{
     height: fit-content;
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--emphasis-color);
-   
 }
 
 .title_top-box {
@@ -46,22 +44,22 @@ header{
     align-items: center;
     width: 100vw;
 }
+
 .header-row-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-
 }
 
 .hamburger_wrapper {
     display: none;
-	 justify-content: center;
-	 align-items: center;
-	 margin-top: 5px;
-	 filter: drop-shadow(0 0 7px var(--outline-color)); 
-	 cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 7px var(--outline-color));
+    cursor: pointer;
 }
 
 .hamburger {
@@ -126,9 +124,12 @@ header{
 
 .menu_button,
 .sort_button,
-.title-wrapper__hate-button {
+.title-wrapper__hate-button,
+.login-button,
+.logout-button,
+.film-submit-button,
+.login-submit-button {
     border: none;
-    color: none;
     padding: 0.5rem;
     font-family: inherit;
     background: none;
@@ -141,31 +142,136 @@ header{
 .hamburger:hover,
 .menu_button:hover,
 .sort_button:hover,
-.title-wrapper__hate-button:hover {
+.title-wrapper__hate-button:hover,
+.login-button:hover,
+.logout-button:hover,
+.film-submit-button:hover {
     color: var(--hover-color);
     text-shadow: 1px 1px 1px 20px var(--hover-color);
 }
 
-/* VIDEO CONTENT STYLING  */
+/* LOGIN PAGE STYLING */
+.close-login-button,
+.close-dialog-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--outline-color);
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.close-login-button:hover,
+.close-dialog-button:hover {
+    color: var(--highlight-color);
+}
+
+.login-form {
+    display: flex;
+    width: fit-content;
+    height: 10rem;
+    gap: rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=text],
+input[type=date],
+input[type=email],
+input[type=password] {
+    background-color: transparent;
+    font-family: inherit;
+    color: var(--outline-color);
+    border: 1px solid var(--emphasis-color);
+}
+
+/* ADD FILMS PAGE STYLING */
+.form-elements-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-elements-container label {
+    padding: 0.2rem;
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(10px);
+    opacity: 0.75;
+}
+
+.add-film-container {
+    display: flex;
+    direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 15rem;
+    width: 100vw;
+    margin-bottom: 3rem;
+}
+
+.add-film-page,
+.login-page {
+    font-family: var(--custom-font);
+    background-color: var(--background-color);
+    color: var(--outline-color);
+    border-color: var(--emphasis-color);
+    margin: 0;
+    padding: 1rem;
+    text-shadow: 2px 2px 5px var(--outline-color);
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/* ERROR MESSAGE STYLING */
+.error-message {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: x-small;
+    color: orange;
+}
+
+/* BIO PAGE STYLING */
+.bio-page {
+    display: none;
+    padding: 2rem;
+}
+
+.bio {
+    margin-left: 0;
+    width: 100%;
+    text-align: left;
+}
+
+/* VIDEO CONTENT STYLING */
 .list-items-container {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100vw;
-    /*height: 100vh;*/
     justify-content: space-evenly;
     align-items: stretch;
-
 }
 
 .video-card {
     position: relative;
-    width: 30%; 
-    padding-bottom: 16.875%; 
-    margin: 1rem; 
+    width: 30%;
+    padding-bottom: 16.875%;
+    margin: 1rem;
     border: 1px solid var(--emphasis-color);
-    overflow: hidden; 
-    margin-bottom: 1rem;
+    overflow: hidden;
 }
 
 .video-card iframe {
@@ -177,22 +283,9 @@ header{
     left: 0;
 }
 
-.icon {
-    width: 100px; /* Adjust size as needed */
-    height: 100px; /* Adjust size as needed */
-    background: transparent;
-    filter: drop-shadow(0 0 10px rgba(0, 247, 251, 0.8)); /* Glow effect */
-  }
 
-/* BIO STYLING */
 
-.bio {
-    margin-left: 0;
-    width: 100%;
-    text-align: left;
-}
-
-/* CONTACT FOOTER  */
+/* CONTACT FOOTER */
 footer {
     font-size: smaller;
     border: 1px solid var(--outline-color);
@@ -203,169 +296,12 @@ footer {
     text-align: center;
     backdrop-filter: blur(10px);
 }
+
 .contact {
     position: absolute;
     margin: 0;
     width: 80%;
     text-align: center;
-}
-
-
-/* LOGIN PAGE STYLING */
-
-.close-login-button, .close-dialog-button{
-    background: none;
-	border: none;
-	padding: 0;
-    color: var(--outline-color);
-    background: transparent;
-    font-family: inherit;
-    cursor: pointer
-}
-.close-login-button:hover, .close-dialog-button:hover{
-    color: var(--highlight-color);
-}
-
-.login-form{
-    display: flex;
-    width: fit-content;
-    height: 10rem;
-    gap:rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-input[type=text]{
-    background-color: transparent;
-    font-family: inherit;
-    color: var(--outline-color);
-    border: 1px solid var(--emphasis-color)
-}
-input[type=date]{
-    background-color: transparent;
-    font-family: inherit;
-    color: var(--outline-color);
-    border: 1px solid var(--emphasis-color)
-}
-input[type=email]{
-    background-color: transparent;
-    font-family: inherit;
-    color: var(--outline-color);
-    border: 1px solid var(--emphasis-color)
-}
-input[type=password]{
-    background-color: transparent;
-    font-family: inherit;
-    color: var(--outline-color);
-    border: 1px solid var(--emphasis-color)
-}
-.login-button, .logout-button, .film-submit-button{
-   
-    border: none;
-    color: none;
-    padding: 0.5rem;
-    font-family: inherit;
-    background: none;
-    cursor: pointer;
-    text-shadow: inherit;
-    color: var(--outline-color);
-    outline: none;
-    cursor: pointer;
-}
-.film-submit-button{font-size: large;}
-.login-button:hover, .logout-button:hover, .film-submit-button:hover{
-    color: var(--hover-color);
-}
-.login-submit-button{
-    border: none;
-    color: none;
-    padding: 0.5rem;
-    font-family: inherit;
-    background: none;
-    cursor: pointer;
-    text-shadow: inherit;
-    color: var(--outline-color);
-    outline: none;
-}
-.logout-button{
-    border: none;
-    color: none;
-    padding: 0.5rem;
-    font-family: inherit;
-    background: none;
-    cursor: pointer;
-    text-shadow: inherit;
-    color: var(--outline-color);
-    outline: none;
-    /*margin-bottom: 2rem;*/
-    justify-content: flex-end;
-
-}
-
-/* ADD FILMS PAGE STYLING */
-
-.form-elements-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.form-elements-container label {
-    padding: 1rem;
-}
-
-dialog::backdrop {
-    backdrop-filter: blur(10px);
-    opacity: 0.75;  
-}
-
-.add-film-container  {
-
-    display: flex;
-    direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 15rem;
-    width: 100vw;
-    margin-bottom: 3rem;
-}
-
-
-.add-film-page, .login-page {
-font-family: var(--custom-font);
-background-color: var(--background-color);
-color: var(--outline-color);
-border-color: var(--emphasis-color);
-margin: 0;
-padding: 2rem;
-text-shadow: 2px 2px 5px var(--outline-color);
-
-color: var(--outline-color);
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    }
-  
-/* ERROR MESSAGE STYLING */
-.error-message{
-display: flex;
-flex-direction: row;
-width: 40%;
-justify-content: center;
-flex-wrap: wrap;
-    font-size: small;
-    color: orange;
-}
-
-/* BIO PAGE STYLING */
-.bio-page{
-    display: none;
-    padding: 2rem;
 }
 
 /* STATES STYLING */
@@ -374,26 +310,24 @@ flex-wrap: wrap;
     text-shadow: 1px 1px 1px 20px var(--emphasis-color);
 }
 
-.invisible{
+.invisible {
     display: none;
 }
+
 .visible {
     display: flex;
 }
 
-
-/* RESPONIVITY STYLING */
-@media screen and ( max-width: 960px){
+/* RESPONSIVITY STYLING */
+@media screen and (max-width: 960px) {
     .video-card {
         position: relative;
-        width: 40%; 
-        padding-bottom: 22.5%; 
-        margin: 1rem; 
+        width: 40%;
+        padding-bottom: 22.5%;
+        margin: 1rem;
         border: 1px solid var(--emphasis-color);
-        overflow: hidden; 
-        margin-bottom: 1rem;
+        overflow: hidden;
     }
-
 }
 
 @media screen and (max-width: 720px) {
@@ -451,18 +385,14 @@ flex-wrap: wrap;
         font-size: x-small;
     }
 
-    .highlight {
-        color: var(--emphasis-color);
-        text-shadow: 1px 1px 1px 20px var(--emphasis-color);
-    }
     .video-card {
         position: relative;
-        width: 80%; 
-        padding-bottom: 45%; 
+        width: 80%;
+        padding-bottom: 45%;
         margin-bottom: 1rem;
-        margin: 1rem; 
+        margin: 1rem;
         border: 1px solid var(--emphasis-color);
-        overflow: hidden; 
+        overflow: hidden;
     }
 
     .visible {

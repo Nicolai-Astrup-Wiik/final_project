@@ -15,7 +15,7 @@ import {
   addFilmButton,
 } from "./elements";
 
-// Firebase configuration
+// FIREBASE CONFIGURATION
 const firebaseConfig = {
   apiKey: "AIzaSyCnbgppAJujXk6RJMQ9DgCGYA3VmORN1BI",
   authDomain: "film-portfolio-fae54.firebaseapp.com",
@@ -25,14 +25,13 @@ const firebaseConfig = {
   appId: "1:261763430075:web:d04117b69349619c555b9e",
 };
 
-// Initialize Firebase
+// FIREBASE INITIALIZE
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const filmRef = collection(db, "films");
 
-//Initialize login constants
-
+//INITIALIZE LOGIN CONSTANTS
 export let films = [];
 
 //RETRIEVE FILMS FROM FIREBASE
@@ -68,8 +67,8 @@ export const signOutUser = async () => {
   await signOut(auth);
 };
 
+//INITIALIZE ONAUTHSTATECHANGE AND CORRESPONDING DISPLY CHANGES
 let unsubscribeFromAuthState;
-
 unsubscribeFromAuthState = onAuthStateChanged(auth, async (user) => {
   if (user) {
     loginPage.close();

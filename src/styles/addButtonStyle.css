@@ -1,23 +1,13 @@
+/* Button found at https://codepen.io/mortezasharifinia/pen/QWxmEWW */
 
-/*
-.add-film-button-container{
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}*/
-.add-film-button{
+.add-film-button {
   font-family: inherit;
-	/*margin: 5rem;
-	margin-bottom: 10rem;*/
-	background-color: transparent;
-	border: none;
+  background-color: transparent;
+  border: none;
 }
 
-
-
 .button {
- 
+
   position: relative;
   padding: 16px 30px;
   font-size: 1.5rem;
@@ -136,6 +126,6 @@
   transform-origin: bottom;
 }
 
-.button:hover span:nth-child(4 ) {
+.button:hover span:nth-child(4) {
   bottom: 50%;
 }

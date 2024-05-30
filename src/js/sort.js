@@ -19,6 +19,7 @@ const agency = "agency work";
 const directWork = "direct work";
 const all = "all";
 
+//SORT BY NEWEST
 newestButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = newest;
@@ -28,6 +29,8 @@ newestButton.addEventListener("click", async (e) => {
   });
   newestButton.classList.add("highlight");
 });
+
+//SORT BY OLDEST
 oldestButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = oldest;
@@ -38,6 +41,7 @@ oldestButton.addEventListener("click", async (e) => {
   oldestButton.classList.add("highlight");
 });
 
+//FILTER FOR AGENCY
 agencyButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = agency;
@@ -47,6 +51,8 @@ agencyButton.addEventListener("click", async (e) => {
   });
   agencyButton.classList.add("highlight");
 });
+
+//FILTER FOR DIRECT FROM CLIENT WORK
 directButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = directWork;
@@ -56,6 +62,8 @@ directButton.addEventListener("click", async (e) => {
   });
   directButton.classList.add("highlight");
 });
+
+//DISPLAY ALL
 allButton.addEventListener("click", async (e) => {
   e.preventDefault();
   filterOrSortState = all;
@@ -66,6 +74,7 @@ allButton.addEventListener("click", async (e) => {
   allButton.classList.add("highlight");
 });
 
+//DISPLAY BIO
 bioButton.addEventListener("click", (e) => {
   bioPage.style.display = "block";
   filmPage.style.display = "none";
@@ -76,6 +85,7 @@ bioButton.addEventListener("click", (e) => {
   bioButton.classList.add("highlight");
 });
 
+//SORT BY DATE ASCENDING/DESCENDING
 export function filterOrSortVideos(films) {
   if (filterOrSortState === newest) {
     return films.sort((a, b) => {
@@ -98,13 +108,8 @@ export function filterOrSortVideos(films) {
   return films;
 }
 
-// Remove highlight from other buttons
 
 menuButtons.forEach((button) => {
   button.classList.remove("highlight");
 });
 
-oldestButton.addEventListener("click", function () {
-  oldestButton.classList.add("highlight");
-  newestButton.classList.remove("highlight");
-});

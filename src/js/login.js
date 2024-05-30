@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import { resetErrorMessages } from "./formValidation";
+import { resetErrorMessages } from "./formValidationUtils";
 import { firebaseLogin, signOutUser } from "./firebase";
 import {
   closeLogInButton,
@@ -11,6 +11,7 @@ import {
   passwordInput,
 } from "./elements";
 
+//OPEN AND CLOSE LOGIN MODAL
 logInButton.addEventListener("click", (e) => {
   e.preventDefault();
   loginPage.showModal();
@@ -27,8 +28,6 @@ loginSubmitButton.addEventListener("click", async (e) => {
 
   const userEmailInput = emailInput.value.trim();
   const userPasswordInput = passwordInput.value.trim();
-
-  // Clear previous error messages
   const emailErrorElement = document.getElementById("emailError");
   const passwordErrorElement = document.getElementById("passwordError");
   const userErrorElement = document.getElementById("userError");
@@ -38,7 +37,7 @@ loginSubmitButton.addEventListener("click", async (e) => {
 
   let hasError = false;
 
-  // Basic validation
+  // BASIC VALIDATION CONDITIONS
   if (!userEmailInput) {
     emailErrorElement.textContent = "Email is required.";
     hasError = true;
@@ -49,7 +48,7 @@ loginSubmitButton.addEventListener("click", async (e) => {
     hasError = true;
   }
 
-  // Email format validation
+  // CHECK FOR EMAIL FORMAT
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (userEmailInput && !emailPattern.test(userEmailInput)) {
     emailErrorElement.textContent = "Please enter a valid email address.";
@@ -65,6 +64,7 @@ loginSubmitButton.addEventListener("click", async (e) => {
     return;
   }
 
+  //CHECK IF USER EXISTS IN FIREBASE
   try {
     const userExists = await firebaseLogin(userEmailInput, userPasswordInput);
     if (!userExists) {
