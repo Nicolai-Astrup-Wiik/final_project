@@ -23,6 +23,7 @@ header {
     width: 100%;
     height: fit-content;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--emphasis-color);
 }
 
@@ -201,6 +202,7 @@ input[type=password] {
 
 dialog::backdrop {
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     opacity: 0.75;
 }
 
@@ -294,6 +296,7 @@ footer {
     width: 100%;
     position: fixed;
     text-align: center;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
@@ -410,5 +413,6 @@ footer {
         text-align: left;
         padding-left: 0.5rem;
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 }
