@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { collection, getFirestore, getDocs, addDoc } from "firebase/firestore";
+import { collection, getFirestore, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -27,7 +27,7 @@ const firebaseConfig = {
 
 // FIREBASE INITIALIZE
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const db = getFirestore(app);
 const filmRef = collection(db, "films");
 
@@ -40,6 +40,7 @@ export const getFilms = async () => {
   const snapshot = await getDocs(filmRef);
   snapshot.docs.forEach((film) => {
     const data = film.data();
+    data.id = film.id;  
     films.push(data);
   });
 };
@@ -67,9 +68,12 @@ export const signOutUser = async () => {
   await signOut(auth);
 };
 
-//INITIALIZE ONAUTHSTATECHANGE AND CORRESPONDING DISPLY CHANGES
+//INITIALIZE ONAUTHSTATECHANGE AND CORRESPONDING DISPLAY CHANGES
 let unsubscribeFromAuthState;
-unsubscribeFromAuthState = onAuthStateChanged(auth, async (user) => {
+unsubscribeFromAuthState = onAuthStateChanged(auth, (user) => {
+  const event = new CustomEvent('authStateChanged', { detail: { user } });
+  window.dispatchEvent(event);
+
   if (user) {
     loginPage.close();
     logInButton.style.display = "none";
@@ -96,4 +100,10 @@ export async function addFilm(title, date, agency, url) {
     name: title,
     url: url,
   });
+}
+
+// DELETE FILM FROM FIREBASE
+export async function deleteFilm(filmId) {
+  const filmDoc = doc(db, "films", filmId);
+  await deleteDoc(filmDoc);
 }
