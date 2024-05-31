@@ -14,7 +14,8 @@ No Agency
 
 The login validation checks for existing user, password and that email is the correct format. 
 The Add button validation checks for values of each field, but there is sadly no way to validate the src link before adding. 
-Deletion is only done in firebase as the delete buttons would make the page look ugly. Perhaps with better time I would have incorporated a separate page that could delete inputs. 
+
+A logged in user can delete videos from the dataset by pressing "delete" in the top right corner of each film. 
 
 Firebase project:
 https://console.firebase.google.com/u/0/project/film-portfolio-fae54/overview
