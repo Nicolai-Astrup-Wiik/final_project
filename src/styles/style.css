@@ -274,8 +274,7 @@ dialog::backdrop {
     width: 30%;
     padding-bottom: 16.875%;
     margin: 1rem;
-    border: 2px solid yellow;
-    /* Assuming this is the yellow border */
+    border: 2px solid var(--emphasis-color);
     overflow: hidden;
 }
 
@@ -346,7 +345,7 @@ footer {
         width: 40%;
         padding-bottom: 22.5%;
         margin: 1rem;
-        border: 2px solid yellow;
+        border: 2px solid var(--emphasis-color);
         overflow: hidden;
     }
 }
@@ -412,7 +411,7 @@ footer {
         padding-bottom: 45%;
         margin-bottom: 1rem;
         margin: 1rem;
-        border: 2px solid yellow;
+        border: 2px solid var(--emphasis-color);
         overflow: hidden;
     }
 
