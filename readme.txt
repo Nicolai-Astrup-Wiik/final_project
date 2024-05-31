@@ -24,7 +24,7 @@ Netlify-link:
 https://nawportfolio.netlify.app/
 
 Github-link:
-https://github.com/Nicolai-Astrup-Wiik/final_project/edit/master/readme.txt
+https://github.com/Nicolai-Astrup-Wiik/final_project.git
 
 resources:
 Fancy button:
