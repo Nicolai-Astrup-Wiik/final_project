@@ -244,7 +244,7 @@ dialog::backdrop {
     justify-content: center;
     flex-wrap: wrap;
     font-size: x-small;
-    color: orange;
+    color: var(--error-color);
 }
 
 /* BIO PAGE STYLING */
@@ -274,7 +274,7 @@ dialog::backdrop {
     width: 30%;
     padding-bottom: 16.875%;
     margin: 1rem;
-    border: 1px solid var(--emphasis-color);
+    border: 2px solid var(--emphasis-color);
     overflow: hidden;
 }
 
@@ -287,7 +287,21 @@ dialog::backdrop {
     left: 0;
 }
 
+.delete-button {
+    font-family: inherit;
+    position: absolute;
+    top: 0rem;
+    right: 0;
+    color: var(--delete-color);
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
 
+.delete-button:hover {
+    color: var(--highlight-color)
+}
 
 /* CONTACT FOOTER */
 footer {
@@ -331,7 +345,7 @@ footer {
         width: 40%;
         padding-bottom: 22.5%;
         margin: 1rem;
-        border: 1px solid var(--emphasis-color);
+        border: 2px solid var(--emphasis-color);
         overflow: hidden;
     }
 }
@@ -374,7 +388,7 @@ footer {
         display: flex;
         width: 80%;
         justify-content: flex-start;
-        align-items: center;
+        align-items: center.
     }
 
     .menu {
@@ -397,7 +411,7 @@ footer {
         padding-bottom: 45%;
         margin-bottom: 1rem;
         margin: 1rem;
-        border: 1px solid var(--emphasis-color);
+        border: 2px solid var(--emphasis-color);
         overflow: hidden;
     }
 

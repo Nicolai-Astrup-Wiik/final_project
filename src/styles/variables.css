@@ -5,5 +5,6 @@
 	--hover-color: rgb(0, 191, 255);
 	--emphasis-color: yellow;
 	--custom-font: 'Audiowide', sans-serif;
- }
- 
+	--error-color: orange;
+	--delete-color: rgb(175, 17, 17);
+}

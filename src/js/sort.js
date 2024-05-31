@@ -12,7 +12,8 @@ import {
 } from "./elements";
 import { renderFilms } from "./renderFilms";
 
-let filterOrSortState = "all";
+//DEFAULT SORTING TO NEWEST
+let filterOrSortState = "newest";
 const newest = "newest";
 const oldest = "oldest";
 const agency = "agency work";

@@ -29,6 +29,7 @@ const allButton = document.getElementById("all");
 const bioButton = document.getElementById("bio");
 const addFilmContainer = document.querySelector(".add-film-container");
 const menuButtons = document.querySelectorAll(".menu_button");
+const deleteButtons = document.querySelectorAll(".delete-button")
 
 export {
   loginPage,
@@ -62,4 +63,5 @@ export {
   bioButton,
   addFilmContainer,
   menuButtons,
+  deleteButtons,
 };
