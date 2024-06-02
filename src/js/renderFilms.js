@@ -32,7 +32,10 @@ export const renderFilms = async () => {
       "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
     iframe.allowFullscreen = true;
 
-   
+    const titleOverlay = document.createElement("div");
+    titleOverlay.classList.add("title-overlay");
+    titleOverlay.textContent = film.name;
+
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("delete-button");
@@ -44,12 +47,12 @@ export const renderFilms = async () => {
     });
 
     wrapper.appendChild(iframe);
+    wrapper.appendChild(titleOverlay);
     wrapper.appendChild(deleteButton);
 
     container.appendChild(wrapper);
   });
 
-  
   toggleDeleteButtons(auth.currentUser);
 };
 
