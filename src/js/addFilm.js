@@ -11,11 +11,17 @@ import {
 import { addFilm, getFilms } from "./firebase";
 import { renderFilms } from "./renderFilms";
 
+function extractIframeSrc(embedCode) {
+  const srcMatch = embedCode.match(/<iframe[^>]*\s+src=["']([^"']+)["']/i);
+  return srcMatch ? srcMatch[1] : null;
+}
+
 //ADD FILM OPEN MODAL
 addFilmButton.addEventListener("click", (e) => {
   e.preventDefault();
   addFilmDialog.showModal();
 });
+
 //ADD FILM CLOSE MODAL
 closeAddFilmButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -39,13 +45,13 @@ filmSubmitButton.addEventListener("click", async (e) => {
   dateErrorElement.textContent = "";
   urlErrorElement.textContent = "";
 
-  const userTtileinput = filmTitle.value.trim();
+  const userTitleInput = filmTitle.value.trim();
   const userFilmDateInput = filmDate.value.trim();
   const userAgencyInput = filmAgency.checked;
-  const userUrlInput = filmUrl.value.trim();
+  let userUrlInput = filmUrl.value.trim();
 
   let hasError = false;
-  if (!userTtileinput) {
+  if (!userTitleInput) {
     titleErrorElement.textContent = "Please enter a title";
     hasError = true;
   }
@@ -57,13 +63,23 @@ filmSubmitButton.addEventListener("click", async (e) => {
   if (!userUrlInput) {
     urlErrorElement.textContent = "Please enter a url";
     hasError = true;
+  } else {
+    // Extract the src attribute from the embed code
+    const extractedSrc = extractIframeSrc(userUrlInput);
+    if (extractedSrc) {
+      userUrlInput = extractedSrc;
+    } else {
+      urlErrorElement.textContent = "Invalid embed code. Please enter a valid iframe embed code.";
+      hasError = true;
+    }
   }
+
   if (hasError) {
     return;
   }
 
   await addFilm(
-    userTtileinput,
+    userTitleInput,
     userFilmDateInput,
     userAgencyInput,
     userUrlInput
