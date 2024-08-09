@@ -370,6 +370,11 @@ footer {
         display: flex;
         margin-left: 0.5rem;
     }
+    .hamburger_wrapper_icon{
+        width: 30; 
+        height: 30; 
+        cursor: pointer;
+    }
 
     .title_top-box {
         font-size: large;

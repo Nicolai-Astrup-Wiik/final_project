@@ -1,4 +1,3 @@
-
 //FETCH FINAL SPACE QUOTES AND SELECT RANDOM
 export const fetchQuote = async () => {
   let randomIndex = Math.floor(Math.random() * 50);
@@ -20,13 +19,17 @@ export const renderQuote = async () => {
   const quoteH3 = document.createElement("h3");
   const quoteP = document.createElement("p");
   const quote = await fetchQuote();
-  quoteH3.textContent = quote.quote;
-  quoteP.textContent = "- " + quote.by;
 
-  quoteContainer.appendChild(quoteH3);
-  quoteContainer.appendChild(quoteP);
-  bioPage.insertBefore(quoteContainer, bioText);
-  quoteContainer.style.marginBottom = "2rem";
+  if (quote) {
+    quoteH3.textContent = quote.quote;
+    quoteP.textContent = "- " + quote.by;
+
+    quoteContainer.appendChild(quoteH3);
+    quoteContainer.appendChild(quoteP);
+    bioPage.insertBefore(quoteContainer, bioText);
+    quoteContainer.style.marginBottom = "2rem";
+  } else {
+    console.log("cannot fetch quote");
+  }
 };
-
-renderQuote();
+document.addEventListener("DOMContentLoaded", renderQuote);
