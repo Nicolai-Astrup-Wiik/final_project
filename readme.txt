@@ -4,10 +4,10 @@ password: Frontend!
 
 A continuation of my portfolio page. I have integrated firebase and login, and pretty much improved and updated all the code. In order to add videos with the button on the bottom of the page you need to log in otherwise the button is not there. I chose not to add a "sign-up" feature as there is no need for anyone but me to have acces to add films. 
 
-The way you add them is a bit specific, firebase only stores the embed-url and title, date etc. for each vimeo link. In order to fetch one, you need to go to www.vimeo.com  click a video and hit embed and copy out only the src string. For simplicity I have extracted one here: 
+The way you add them is a bit specific, firebase only stores the embed-url and title, date etc. for each vimeo link. In order to fetch one, you need to go to www.vimeo.com  click a video and hit embed and copy the embed-link. You can copy the whole thing as the SRC is extracted with a regex. 
+for example 
 
-
-https://player.vimeo.com/video/771542986?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/771542986?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Hva er i Safen - Pimp Lotion (2019)"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 Title: Egon Lotion
 Year: October 2019
 No Agency
